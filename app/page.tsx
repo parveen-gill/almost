@@ -5,7 +5,7 @@ import Link from "next/link";
 import LocationDetector from "../components/locationDetector";
 import { getPosts } from "../lib/api";
 import PostCard from "../components/PostCard";
-
+import FilterSidebar from "../components/FilterSidebar";
 export default function HomePage() {
   const [posts, setPosts] = useState<any[]>([]);
   const [detectedCity, setDetectedCity] = useState<string>("");
@@ -69,10 +69,17 @@ export default function HomePage() {
         <h2 className="section-title">
           {detectedCity ? `Posts in ${detectedCity}` : "Latest Posts"}
         </h2>
-        <div className="post-feed">
-          {filteredPosts.map((post) => (
-            <PostCard key={post.id} post={post} isLoggedIn={isLoggedIn} />
-          ))}
+
+        <div className="post-layout">
+          {/* ✅ Sidebar Component */}
+          <FilterSidebar />
+
+          {/* Posts */}
+          <div className="post-feed">
+            {filteredPosts.map((post) => (
+              <PostCard key={post.id} post={post} isLoggedIn={isLoggedIn} />
+            ))}
+          </div>
         </div>
       </section>
     </div>

@@ -118,3 +118,68 @@ body{
   flex-direction: column;
   gap: 20px;
 }
+.post-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
+  min-height: 600px; 
+}
+
+/* Sidebar fixed inside Post Section */
+.filter-sidebar {
+  position: sticky;  
+  top: 80px;          
+  width: 220px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fafafa;
+  height: fit-content;
+    min-height: 100%; 
+    
+}
+
+/* Posts adjust */
+.post-feed {
+  flex: 1;
+  display: grid;
+  gap: 16px;
+}
+
+
+.filter-sidebar h3 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.filter-sidebar label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.filter-sidebar select {
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.filter-sidebar button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  background: #8d1616;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filter-sidebar button:hover {
+  background: #a91d1d;
+}
+
