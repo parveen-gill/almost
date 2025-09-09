@@ -1,0 +1,34 @@
+.location-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+margin:20px;
+  background: linear-gradient(135deg, #800000, #a33939); /* maroon gradient */
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 20px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.location-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.location-icon {
+  color: #ccc906;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.location-text {
+  max-width: 180px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
