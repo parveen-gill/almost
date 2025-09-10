@@ -7,7 +7,11 @@ export const metadata = {
   description: "Reconnect with the moments that almost slipped away.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>

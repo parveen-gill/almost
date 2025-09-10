@@ -6,11 +6,12 @@ export default function LoginPage() {
       <div className="login-container">
          <h1>Login</h1>
         <p>
-  Don't have an account?{" "}
-  <Link style={{textDecoration:'none'}} href="/signup">
+  Don&apos;t have an account?{" "}
+  <Link style={{ textDecoration: "none" }} href="/signup">
     <span>Sign up</span>
   </Link>
 </p>
+
 
       <form>
         <input type="email" placeholder="Email" /><br/>

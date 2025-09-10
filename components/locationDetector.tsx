@@ -14,7 +14,7 @@ export default function LocationDetector({ onDetect }: { onDetect?: (city: strin
 
           try {
             // Try server API first
-            let res = await fetch(`/api/location?lat=${latitude}&lon=${longitude}`);
+            const res = await fetch(`/api/location?lat=${latitude}&lon=${longitude}`);
             let data = await res.json();
 
             // If server failed, fallback to direct call
