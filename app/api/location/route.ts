@@ -5,7 +5,7 @@ import { Agent } from "undici";
 // Force IPv4 first
 dns.setDefaultResultOrder("ipv4first");
 
-// ✅ Undici Agent, not https.Agent
+//  Undici Agent, not https.Agent
 const agent = new Agent({
   connect: { family: 4 }, // force IPv4
 });
@@ -27,7 +27,7 @@ export async function GET(req: Request) {
           "User-Agent": "almostus.in (contact@almostus.in)",
           "Accept-Language": "en",
         },
-        dispatcher: agent, // ✅ correct for Node 18+ (Undici)
+        dispatcher: agent, //  correct for Node 18+ (Undici)
       }
     );
 
@@ -37,10 +37,15 @@ export async function GET(req: Request) {
 
     const data = await response.json();
     return NextResponse.json(data);
-  } catch (err: any) {
-    console.error("❌ Nominatim fetch failed:", err);
+  } catch (err: unknown) {  // Changed `any` → `unknown`
+    console.error("Nominatim fetch failed:", err);
+
+    // Safely handle unknown error type
+    let message = "Unknown error";
+    if (err instanceof Error) message = err.message;
+
     return NextResponse.json(
-      { error: "Failed to fetch location", details: err.message },
+      { error: "Failed to fetch location", details: message },
       { status: 500 }
     );
   }

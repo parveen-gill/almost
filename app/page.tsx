@@ -8,27 +8,37 @@ import LocationDetector from "../components/locationDetector";
 import { getPosts } from "../lib/api";
 import PostCard from "../components/PostCard";
 import FilterSidebar from "../components/FilterSidebar";
+
+// Define Post type
+interface Post {
+  id: number;
+  title: string;
+  content: string;
+  location: string;
+  likes: number;
+  comments: number;
+  username: string;
+  profilePic?: string;
+}
+
 export default function HomePage() {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [detectedCity, setDetectedCity] = useState<string>("");
 
   const isLoggedIn = false;
 
-  // ✅ Load posts once (all posts)
   useEffect(() => {
     async function fetchPosts() {
-      const allPosts = await getPosts();
+      const allPosts: Post[] = await getPosts();
       setPosts(allPosts);
     }
     fetchPosts();
   }, []);
 
-  // ✅ Filter posts by detected location
   const filteredPosts = detectedCity
     ? posts.filter((p) => p.location?.toLowerCase() === detectedCity.toLowerCase())
     : posts;
 
-  // ✅ Group posts by city (for city cards)
   const cityMap: Record<string, number> = {};
   posts.forEach((p) => {
     if (p.location) {
@@ -38,17 +48,14 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero Banner */}
       <section className="hero">
         <div className="hero-content">
           <h1>Reconnect with Missed Connections</h1>
           <p>Discover stories and encounters in your city</p>
-          {/* Pass setDetectedCity */}
           <LocationDetector onDetect={setDetectedCity} />
         </div>
       </section>
 
-      {/* City Grid */}
       <section className="city-section">
         <h2 className="section-title">Explore by City</h2>
         <div className="city-grid">
@@ -66,17 +73,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Post Feed */}
       <section className="post-section">
         <h2 className="section-title">
           {detectedCity ? `Posts in ${detectedCity}` : "Latest Posts"}
         </h2>
 
         <div className="post-layout">
-          {/* ✅ Sidebar Component */}
           <FilterSidebar />
-
-          {/* Posts */}
           <div className="post-feed">
             {filteredPosts.map((post) => (
               <PostCard key={post.id} post={post} isLoggedIn={isLoggedIn} />
