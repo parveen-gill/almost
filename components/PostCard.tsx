@@ -1,6 +1,7 @@
 import Link from "next/link";
 import "../styles/postcard.css";
-
+import { FaRegHeart } from "react-icons/fa";
+import { FaRegComment } from "react-icons/fa";
 interface Post {
   id: number;
   title: string;
@@ -51,8 +52,8 @@ export default function PostCard({ post, isLoggedIn }: { post: Post; isLoggedIn:
 
       {/* Likes + Comments */}
       <div className="meta">
-        <span>👍 {post.likes}</span>
-        <span>💬 {post.comments}</span>
+        <span><FaRegHeart/> {post.likes}</span>
+        <span><FaRegComment/>{post.comments}</span>
       </div>
     </div>
   );

@@ -90,7 +90,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 3em;
+  height: 2em;
   background: linear-gradient(to top, #fff 60%, rgba(255,255,255,0));
   display: flex;
   justify-content: center;

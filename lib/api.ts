@@ -68,6 +68,15 @@ export async function getPosts() {
       likes: 25,
       comments: 6,
       username: "Rahul",
+    },
+    {
+      id: 8,
+      title: "freind from college days",   
+      content: "We were inseparable during our college days, sharing dreams and laughter. Life took us on different paths, but I've never forgotten you. If you're out there, let's catch up and reminisce about the good old days!",
+      location: "Chandigarh",
+      likes: 30,
+      comments: 8,
+      username: "Sneha",
     }
   ];
 

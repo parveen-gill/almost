@@ -1,12 +1,13 @@
 import { getPosts } from "../../../lib/api";
 import PostCard from "../../../components/PostCard";
-
+import FilterSidebar from "../../../components/FilterSidebar";
 interface Props {
   params: { city: string };
 }
 
 export default async function CityPage({ params }: Props) {
   const { city } = params;
+  const isLoggedIn = false; // Simulate logged-in status
   const posts = await getPosts();
 
   // filter only city posts
@@ -14,15 +15,22 @@ export default async function CityPage({ params }: Props) {
 
   return (
     <div>
-      <h1>Posts in {city}</h1>
+     
 
-      {filtered.length > 0 ? (
-        filtered.map((post) => (
-          <PostCard key={post.id} post={post} isLoggedIn={false} />
-        ))
-      ) : (
-        <p>No posts found in {city}.</p>
-      )}
+      <section className="post-section">
+               <h1>Posts in {city}</h1>
+              <div className="post-layout">
+                {/* ✅ Sidebar Component */}
+                <FilterSidebar />
+      
+                {/* Posts */}
+                <div className="post-feed">
+                  {filtered.map((post) => (
+                    <PostCard key={post.id} post={post} isLoggedIn={isLoggedIn} />
+                  ))}
+                </div>
+              </div>
+            </section>
     </div>
   );
 }
