@@ -20,16 +20,18 @@ export async function GET(req: Request) {
   }
 
   try {
-    const response = await fetch(
-      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`,
-      {
-        headers: {
-          "User-Agent": "almostus.in (contact@almostus.in)",
-          "Accept-Language": "en",
-        },
-        dispatcher: agent, //  correct for Node 18+ (Undici)
-      }
-    );
+   const response = await fetch(
+  `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`,
+  {
+    headers: {
+      "User-Agent": "almostus.in (contact@almostus.in)",
+      "Accept-Language": "en",
+    },
+    // @ts-expect-error - dispatcher is Undici-only
+    dispatcher: agent,
+  }
+);
+
 
     if (!response.ok) {
       throw new Error(`Nominatim returned ${response.status}`);
